@@ -651,6 +651,7 @@ GameObject:
   - component: {fileID: 86695704}
   - component: {fileID: 86695703}
   - component: {fileID: 86695707}
+  - component: {fileID: 86695708}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -765,6 +766,21 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &86695708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 86695702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684aa7e00a287884e84cdf8a037fa4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialOne: {fileID: 2100000, guid: dc12bfe18f09f3d42a15e0bf275db910, type: 2}
+  materialTwo: {fileID: 2100000, guid: 0797a8cfd14166848b81de902698a978, type: 2}
+  materialThree: {fileID: 2100000, guid: 6c39f982a920e9b4b9806baed32e0c79, type: 2}
 --- !u!1 &99717592
 GameObject:
   m_ObjectHideFlags: 0
@@ -17931,6 +17947,7 @@ GameObject:
   - component: {fileID: 1490190218}
   - component: {fileID: 1490190216}
   - component: {fileID: 1490190217}
+  - component: {fileID: 1490190221}
   m_Layer: 0
   m_Name: weapon
   m_TagString: Untagged
@@ -18065,6 +18082,21 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1490190214}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1490190221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1490190214}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 684aa7e00a287884e84cdf8a037fa4b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  materialOne: {fileID: 2100000, guid: dc12bfe18f09f3d42a15e0bf275db910, type: 2}
+  materialTwo: {fileID: 2100000, guid: 0797a8cfd14166848b81de902698a978, type: 2}
+  materialThree: {fileID: 2100000, guid: 6c39f982a920e9b4b9806baed32e0c79, type: 2}
 --- !u!1 &1522816936
 GameObject:
   m_ObjectHideFlags: 0
@@ -19122,6 +19154,7 @@ MonoBehaviour:
   speed: 5
   weaponSpeed: 10
   jumpForce: 2
+  gravity: -9.8
   ground: {fileID: 1809263060}
   distanceToGround: 0.2
   groundMask:
@@ -19134,6 +19167,8 @@ MonoBehaviour:
   startPos: {fileID: 1832511435}
   oxygenBar: {fileID: 1752554733}
   oxygenMax: 10
+  gravBall: {fileID: 86695702}
+  currentState: 0
 --- !u!114 &1767837147
 MonoBehaviour:
   m_ObjectHideFlags: 0

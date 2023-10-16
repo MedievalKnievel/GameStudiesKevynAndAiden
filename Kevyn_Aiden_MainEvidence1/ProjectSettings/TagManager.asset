@@ -9,6 +9,8 @@ TagManager:
   - gas
   - KILL
   - win
+  - GravBall
+  - Stick
   layers:
   - Default
   - TransparentFX
