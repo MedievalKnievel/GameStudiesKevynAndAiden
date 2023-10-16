@@ -17,10 +17,10 @@ public class PlayerScript : MonoBehaviour
     private PlayerControls controls;
     private CharacterController controller;
     private Vector3 velocity;
-    private float gravity = -9.8f;
+    public float gravity = -9.8f;
     public Transform ground;
     public float distanceToGround = 0.4f;
-    private float fallspeed = -2f;
+    private float fallspeed = 2f;
     public LayerMask groundMask;
     private Vector2 move;
     public GameObject weapon;
@@ -36,9 +36,14 @@ public class PlayerScript : MonoBehaviour
     public float oxygenMax = 10f;
     private float currentOxy;
     private GameObject bottle;
+    public GameObject gravBall;
+    private StateManager weaponState, gravBallState;
+    public WeaponState currentState;
+
 
     void Awake()
     {
+        currentState = WeaponState.Normal;
         controls = new PlayerControls();
         controller = GetComponent<CharacterController>();
         weaponRb = weapon.GetComponent<Rigidbody>();
@@ -109,6 +114,11 @@ public class PlayerScript : MonoBehaviour
         weapon.transform.SetParent(null);
         weaponRb.AddRelativeForce(Vector3.forward * 25f, ForceMode.Impulse);
         hasWeapon = false;
+        weaponState = weapon.GetComponent<StateManager>();
+        gravBallState = gravBall.GetComponent<StateManager>();
+        currentState = WeaponState.Thrown;
+        weaponState.SetState(currentState);
+        gravBallState.SetState(currentState);
         }
     }
 
@@ -122,6 +132,11 @@ public class PlayerScript : MonoBehaviour
             target = weapon;
             destination = player;
             pull = true;
+            weaponState = weapon.GetComponent<StateManager>();
+            gravBallState = gravBall.GetComponent<StateManager>();
+            currentState = WeaponState.Pulled;
+            weaponState.SetState(currentState);
+            gravBallState.SetState(currentState);
         }
         if(bubble && weaponRb.isKinematic)
         {
@@ -129,6 +144,11 @@ public class PlayerScript : MonoBehaviour
             target = player;
             destination = weapon;
             pull = true;
+            weaponState = weapon.GetComponent<StateManager>();
+            gravBallState = gravBall.GetComponent<StateManager>();
+            currentState = WeaponState.Pulled;
+            weaponState.SetState(currentState);
+            gravBallState.SetState(currentState);
         }
         }
     }
@@ -171,6 +191,11 @@ public class PlayerScript : MonoBehaviour
             controller.enabled = true;
             bubble = false;
             hasWeapon = true;
+            weaponState = weapon.GetComponent<StateManager>();
+            gravBallState = gravBall.GetComponent<StateManager>();
+            currentState = WeaponState.Normal;
+            weaponState.SetState(currentState);
+            gravBallState.SetState(currentState);
          }
         }
         if(Vector3.Distance(target.transform.position, destination.transform.position) > 50f)
@@ -182,6 +207,11 @@ public class PlayerScript : MonoBehaviour
             pull = false;
             controller.enabled = true;
             hasWeapon = true;
+            weaponState = weapon.GetComponent<StateManager>();
+            gravBallState = gravBall.GetComponent<StateManager>();
+            currentState = WeaponState.Normal;
+            weaponState.SetState(currentState);
+            gravBallState.SetState(currentState);
          }
     }
 
